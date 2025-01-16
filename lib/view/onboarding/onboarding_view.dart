@@ -14,20 +14,21 @@ class _OnboardingViewState extends State<OnboardingView> {
   PageController? controller = PageController();
   List pageArr = [
     {
-      "title": "Discounted\nSecondhand Books",
-      "sub_title": "Used and near new secondhand books at great prices.",
-      "img": "assets/img/on_1.png"
+      "title": "Wellcome\nTo story time",
+      "sub_title": "Use AI to create your dream books.",
+      "img": "assets/img/book-white-background.jpg"
     },
     {
-      "title": "20 Book Grocers\nNationally",
-      "sub_title": "We've successfully opened 20 stores across Australia.",
-      "img": "assets/img/on_2.png"
-    },
-    {
-      "title": "Sell or Recycle Your Old\nBooks With Us",
+      "title": "Write us the plot\nThe rest is on us!",
       "sub_title":
-          "If you're looking to downsize, sell or recycle old books, the Book Grocer can help.",
-      "img": "assets/img/on_3.png"
+          "Write us the storyline, and we will create a book with illustrations.",
+      "img": "assets/img/freepik__expand__11930.png"
+    },
+    {
+      "title": "Share your stories\nWith our community",
+      "sub_title":
+          "You can enjoy stories written by other users and share your own as well.",
+      "img": "assets/img/freepik__expand__34264.png"
     },
   ];
 
@@ -98,23 +99,22 @@ class _OnboardingViewState extends State<OnboardingView> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15 ),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextButton(
                         onPressed: () {
-
-                            Navigator.push(
+                          Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const WelcomeView()));
-
                         },
                         child: Text(
                           "Skip",
                           style: TextStyle(
-                              color: TColor.primary, fontSize: 17,
+                              color: TColor.primary,
+                              fontSize: 17,
                               fontWeight: FontWeight.w700),
                         )),
                     Row(
@@ -122,7 +122,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: pageArr.map((pObj) {
                         var index = pageArr.indexOf(pObj);
-              
+
                         return Container(
                           margin: const EdgeInsets.symmetric(horizontal: 4),
                           width: 15,
@@ -135,22 +135,24 @@ class _OnboardingViewState extends State<OnboardingView> {
                         );
                       }).toList(),
                     ),
-              
                     TextButton(
                         onPressed: () {
-
-                            if(page < 2) {
-                              page = page + 1;
-                              controller?.jumpToPage(page);
-                            }else{
-                                Navigator.push(context, MaterialPageRoute(builder: ( context
-                                  ) => const WelcomeView()  ));
-                            }
+                          if (page < 2) {
+                            page = page + 1;
+                            controller?.jumpToPage(page);
+                          } else {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const WelcomeView()));
+                          }
                         },
                         child: Text(
                           "Next",
                           style: TextStyle(
-                              color: TColor.primary, fontSize: 17, fontWeight: FontWeight.w700),
+                              color: TColor.primary,
+                              fontSize: 17,
+                              fontWeight: FontWeight.w700),
                         )),
                   ],
                 ),

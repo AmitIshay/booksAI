@@ -1,4 +1,6 @@
 import 'package:book_grocer/common/color_extenstion.dart';
+import 'package:book_grocer/create_own_story.dart';
+import 'package:book_grocer/create_story_assistance.dart';
 import 'package:flutter/material.dart';
 
 import '../account/account_view.dart';
@@ -23,12 +25,12 @@ class _MainTabViewState extends State<MainTabView>
 
   List menuArr = [
     {"name": "Home", "icon": Icons.home},
-    {"name": "Our Books", "icon": Icons.book},
-    {"name": "Our Stores", "icon": Icons.storefront},
-    {"name": "Careers", "icon": Icons.business_center},
-    {"name": "Sell With Us", "icon": Icons.attach_money},
-    {"name": "Newsletter", "icon": Icons.newspaper},
-    {"name": "Pop-up Leasing", "icon": Icons.open_in_new},
+    {"name": "Story from scratch", "icon": Icons.book},
+    {"name": "Stroy with assistance", "icon": Icons.storefront},
+    {"name": "Sequel to Story", "icon": Icons.business_center},
+    // {"name": "Sell With Us", "icon": Icons.attach_money},
+    // {"name": "Newsletter", "icon": Icons.newspaper},
+    // {"name": "Pop-up Leasing", "icon": Icons.open_in_new},
     {"name": "Account", "icon": Icons.account_circle}
   ];
 
@@ -82,18 +84,36 @@ class _MainTabViewState extends State<MainTabView>
                             : null,
                         child: GestureDetector(
                           onTap: () {
-
-                            if(index == 1) {
-
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => const OurBooksView()  ) );
-                                sideMenuScaffoldKey.currentState?.closeEndDrawer();
-
-                            }else if (index == 7) {
+                            if (index == 2) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const BookQuestionsScreen()));
+                              sideMenuScaffoldKey.currentState
+                                  ?.closeEndDrawer();
+                            } else if (index == 4) {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           const AccountView()));
+                              sideMenuScaffoldKey.currentState
+                                  ?.closeEndDrawer();
+                            } else if (index == 3) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SearchView()));
+                              sideMenuScaffoldKey.currentState
+                                  ?.closeEndDrawer();
+                            } else if (index == 1) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const CreateOwnStory()));
                               sideMenuScaffoldKey.currentState
                                   ?.closeEndDrawer();
                             }

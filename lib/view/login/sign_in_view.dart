@@ -13,7 +13,6 @@ class SignInView extends StatefulWidget {
 }
 
 class _SignInViewState extends State<SignInView> {
-  TextEditingController txtCode = TextEditingController();
   TextEditingController txtEmail = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
   bool isStay = false;
@@ -47,13 +46,6 @@ class _SignInViewState extends State<SignInView> {
                     color: TColor.text,
                     fontSize: 24,
                     fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              RoundTextField(
-                controller: txtCode,
-                hintText: "Optional Group Special Code",
               ),
               const SizedBox(
                 height: 15,
@@ -98,7 +90,11 @@ class _SignInViewState extends State<SignInView> {
                   const Spacer(),
                   TextButton(
                     onPressed: () {
-                       Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgotPasswordView()  ) );
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const ForgotPasswordView()));
                     },
                     child: Text(
                       "Forgot Your Password?",
@@ -110,9 +106,26 @@ class _SignInViewState extends State<SignInView> {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 8,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const SizedBox(width: 20),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        socialIcon("assets/img/google.png"),
+                        socialIcon("assets/img/facebook.png"),
+                        socialIcon("assets/img/apple.png"),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                ],
               ),
+              // const SizedBox(
+              //   height: 8,
+              // ),
               RoundLineButton(
                 title: "Sign In",
                 onPressed: () {},
@@ -120,6 +133,26 @@ class _SignInViewState extends State<SignInView> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Container socialIcon(image) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 32,
+        vertical: 15,
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: Colors.white,
+          width: 2,
+        ),
+      ),
+      child: Image.asset(
+        image,
+        height: 30,
       ),
     );
   }

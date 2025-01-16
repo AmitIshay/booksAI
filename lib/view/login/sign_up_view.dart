@@ -16,7 +16,6 @@ class _SignUpViewState extends State<SignUpView> {
   TextEditingController txtFirstName = TextEditingController();
   TextEditingController txtEmail = TextEditingController();
   TextEditingController txtMobile = TextEditingController();
-  TextEditingController txtCode = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
   bool isStay = false;
 
@@ -79,13 +78,6 @@ class _SignUpViewState extends State<SignUpView> {
                 height: 15,
               ),
               RoundTextField(
-                controller: txtCode,
-                hintText: "Group Special Code (optional)",
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              RoundTextField(
                 controller: txtPassword,
                 hintText: "Password",
                 obscureText: true,
@@ -93,44 +85,84 @@ class _SignUpViewState extends State<SignUpView> {
               const SizedBox(
                 height: 15,
               ),
+              // Row(
+              //   children: [
+              //     IconButton(
+              //       onPressed: () {
+              //         setState(() {
+              //           isStay = !isStay;
+              //         });
+              //       },
+              //       icon: Icon(
+              //         isStay ? Icons.check_box : Icons.check_box_outline_blank,
+              //         color: isStay
+              //             ? TColor.primary
+              //             : TColor.subTitle.withOpacity(0.3),
+              //       ),
+              //     ),
+              //     Expanded(
+              //       child: Text(
+              //         "Please sign me up for the monthly newsletter.",
+              //         style: TextStyle(
+              //           color: TColor.subTitle.withOpacity(0.3),
+              //           fontSize: 13,
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              // const SizedBox(
+              //   height: 8,
+              // ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        isStay = !isStay;
-                      });
-                    },
-                    icon: Icon(
-                      isStay ? Icons.check_box : Icons.check_box_outline_blank,
-                      color: isStay
-                          ? TColor.primary
-                          : TColor.subTitle.withOpacity(0.3),
+                  const SizedBox(width: 20),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        socialIcon("assets/img/google.png"),
+                        socialIcon("assets/img/facebook.png"),
+                        socialIcon("assets/img/apple.png"),
+                      ],
                     ),
                   ),
-                  Expanded(
-                    child: Text(
-                      "Please sign me up for the monthly newsletter.",
-                      style: TextStyle(
-                        color: TColor.subTitle.withOpacity(0.3),
-                        fontSize: 13,
-                      ),
-                    ),
-                  ),
+                  const SizedBox(width: 20),
                 ],
-              ),
-              const SizedBox(
-                height: 8,
               ),
               RoundLineButton(
                 title: "Sign Up",
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder:  (context) => const HelpUsView()  ));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HelpUsView()));
                 },
               )
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Container socialIcon(image) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 32,
+        vertical: 15,
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: Colors.white,
+          width: 2,
+        ),
+      ),
+      child: Image.asset(
+        image,
+        height: 30,
       ),
     );
   }

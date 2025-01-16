@@ -18,11 +18,14 @@ class _WelcomeViewState extends State<WelcomeView> {
     var media = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(children: [
-        Image.asset(
-          "assets/img/welcome_bg.png",
-          width: media.width,
-          height: media.height,
-          fit: BoxFit.cover,
+        Opacity(
+          opacity: 0.8,
+          child: Image.asset(
+            "assets/img/blue-background-with-isometric-book.jpg",
+            width: media.width,
+            height: media.height,
+            fit: BoxFit.cover,
+          ),
         ),
         SafeArea(
             child: Container(
@@ -47,11 +50,10 @@ class _WelcomeViewState extends State<WelcomeView> {
               RoundButton(
                 title: "Sign in",
                 onPressed: () {
-                   Navigator.push(
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const SignInView ()));
-
+                          builder: (context) => const SignInView()));
                 },
               ),
               const SizedBox(
@@ -60,9 +62,10 @@ class _WelcomeViewState extends State<WelcomeView> {
               RoundButton(
                 title: "Sign up",
                 onPressed: () {
-
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpView() ));
-
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpView()));
                 },
               ),
             ],

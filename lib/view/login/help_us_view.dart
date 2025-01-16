@@ -10,6 +10,23 @@ class HelpUsView extends StatefulWidget {
 }
 
 class _HelpUsViewState extends State<HelpUsView> {
+  // List of genres and their selected state
+  final Map<String, bool> topGenres = {
+    "Fantasy": false,
+    "Adventure": false,
+    "Fairy Tales": false,
+    "Mystery": false,
+    "Bedtime Stories": false,
+    "Science Fiction": false
+  };
+  final Map<String, bool> otherGenres = {
+    "Romance": false,
+    "Horror": false,
+    "Non-Fiction": false,
+    "Biography": false,
+    "History": false,
+    "Thriller": false,
+  };
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,86 +51,116 @@ class _HelpUsViewState extends State<HelpUsView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Help Up Help You",
+                "Help Us To Help You",
                 style: TextStyle(
                     color: TColor.text,
                     fontSize: 24,
                     fontWeight: FontWeight.w700),
               ),
               const SizedBox(
-                height: 25,
-              ),
-              Text(
-                "It seems as this is your first time using our app, please enter your location so we can filter our results and stock accordingly to your local store.",
-                style: TextStyle(color: TColor.subTitle, fontSize: 15),
-              ),
-              const SizedBox(
                 height: 20,
               ),
               Text(
-                "If you choose to skip, you can change your location at any time in your account settings.",
+                "Tell us what kind of stories you like.",
                 style: TextStyle(color: TColor.subTitle, fontSize: 15),
               ),
               const SizedBox(
                 height: 15,
               ),
-              
-              const Text("Chanch Click"),
-              
-              const SizedBox(
-                height: 15,
-              ),
-
-              Container(
-                height: 50,
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                decoration: BoxDecoration(
-                    color: TColor.textbox,
-                    borderRadius: BorderRadius.circular(20)),
-                child: DropdownButton(
-                  isExpanded: true,
-                  hint: const Text("State"),
-                  underline: Container(),
-                  items: ["State1", "State2"].map((name) {
-                    return DropdownMenuItem(
-                      value: name,
-                      child: Text(name),
-                    );
-                  }).toList(),
-                  onChanged: (selectVal) {},
-                ),
+              Text(
+                "Based on what you like to read, we will suggest stories created by community members.",
+                style: TextStyle(color: TColor.subTitle, fontSize: 15),
               ),
               const SizedBox(
                 height: 15,
               ),
-              Container(
-                height: 50,
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                decoration: BoxDecoration(
-                    color: TColor.textbox,
-                    borderRadius: BorderRadius.circular(20)),
-                child: DropdownButton(
-                  isExpanded: true,
-                  hint: const Text("City"),
-                  underline: Container(),
-                  items: ["City1", "City2"].map((name) {
-                    return DropdownMenuItem(
-                      value: name,
-                      child: Text(name),
-                    );
-                  }).toList(),
-                  onChanged: (selectVal) {},
-                ),
-              ),
+              const Text("Top Genres"),
               const SizedBox(
                 height: 15,
+              ),
+              // List of genre checkboxes arranged horizontally
+              Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: topGenres.keys.map((genre) {
+                  return Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            topGenres[genre] = !topGenres[genre]!;
+                          });
+                        },
+                        icon: Icon(
+                          topGenres[genre]!
+                              ? Icons.check_box
+                              : Icons.check_box_outline_blank,
+                          color: topGenres[genre]!
+                              ? TColor.primary
+                              : TColor.subTitle.withOpacity(0.3),
+                        ),
+                      ),
+                      Text(
+                        genre,
+                        style: TextStyle(
+                          color: TColor.text,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  );
+                }).toList(),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text("Other Genres"),
+              const SizedBox(
+                height: 15,
+              ),
+              Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: otherGenres.keys.map((genre) {
+                  return Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            otherGenres[genre] = !otherGenres[genre]!;
+                          });
+                        },
+                        icon: Icon(
+                          otherGenres[genre]!
+                              ? Icons.check_box
+                              : Icons.check_box_outline_blank,
+                          color: otherGenres[genre]!
+                              ? TColor.primary
+                              : TColor.subTitle.withOpacity(0.3),
+                        ),
+                      ),
+                      Text(
+                        genre,
+                        style: TextStyle(
+                          color: TColor.text,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  );
+                }).toList(),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
                     onPressed: () {
-                      Navigator.push(context,  MaterialPageRoute(builder: (context) => const MainTabView() ) );
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MainTabView()));
                     },
                     child: Text(
                       "Skip",
